@@ -1,16 +1,10 @@
 package com.bcen.models;
 
-import java.util.List;
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -33,10 +27,9 @@ public class User {
 	@Column
 	private String favorite_candy;
 	/*
-	 * Ideally, you would want to keep data atomic as you are not in first
-	 * normal formal form if you do not. That said, for simplicity's sake,
-	 * we will store all collections' data as comma separated lists in our
-	 * DB.
+	 * Ideally, you would want to keep data atomic as you are not in first normal
+	 * formal form if you do not. That said, for simplicity's sake, we will store
+	 * all collections' data as comma separated lists in our DB.
 	 */
 	@Column
 	private String food_allergies;
@@ -44,27 +37,6 @@ public class User {
 	private boolean paid_in_full;
 	@Column
 	private boolean can_donate;
-	/**
-	 * This will be a many-to-many to responsibilities with a max of two.
-	 * 
-	 * The available jobs are:
-	 * 
-	 * Associate Consuite - rations and plans food menu for the party - upper limit 2
-	 * Chief Consuite - prepares food based on the proposed menu - upper limit - 2
-	 * Driver - drives people everywhere lolz - upper limit 2
-	 * Website - exclusive position that no one can sign up for (and no one can actually click it)
-	 * Founder - exclusive position that no one can sign up for
-	 * Medic - gives first aid to party goers - upper limit 2
-	 * Panelist - provides party fun
-	 * DJ - provides the bops - upper limit 2
-	 * Vendor - sells swag to party goers
-	 * Costume Repair - mends threads - upper limit 1
-	 * Program Coordinator - someone who manages scheduling and creates propaganda - upper limit 3
-	 */
-	@ManyToMany
-	@JoinTable(name = "user_responsibility", joinColumns = {@JoinColumn(name = "user_id")},
-	inverseJoinColumns = {@JoinColumn(name = "responsibility")})
-	private Set<Responsibility> responsibilities;
 	@Column
 	private String panels;
 	@Column
@@ -79,16 +51,16 @@ public class User {
 	private String top_two_ultimate_biases;
 	@Column
 	private String additional_info;
-	
+
 	public User() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
 	public User(int id, String name, String nick_name, String favorite_color, String favorite_candy,
-			String food_allergies, boolean paid_in_full, boolean can_donate, Set<Responsibility> responsibilities,
-			String panels, String cosplays, String top_five_anime, String top_two_anime_characters,
-			String top_five_kpop_groups, String top_two_ultimate_biases, String additional_info) {
+			String food_allergies, boolean paid_in_full, boolean can_donate, String panels, String cosplays,
+			String top_five_anime, String top_two_anime_characters, String top_five_kpop_groups,
+			String top_two_ultimate_biases, String additional_info) {
 		super();
 		this.id = id;
 		this.name = name;
@@ -98,7 +70,6 @@ public class User {
 		this.food_allergies = food_allergies;
 		this.paid_in_full = paid_in_full;
 		this.can_donate = can_donate;
-		this.responsibilities = responsibilities;
 		this.panels = panels;
 		this.cosplays = cosplays;
 		this.top_five_anime = top_five_anime;
@@ -172,14 +143,6 @@ public class User {
 		this.can_donate = can_donate;
 	}
 
-	public Set<Responsibility> getResponsibilities() {
-		return responsibilities;
-	}
-
-	public void setResponsibilities(Set<Responsibility> responsibilities) {
-		this.responsibilities = responsibilities;
-	}
-
 	public String getPanels() {
 		return panels;
 	}
@@ -251,7 +214,6 @@ public class User {
 		result = prime * result + ((nick_name == null) ? 0 : nick_name.hashCode());
 		result = prime * result + (paid_in_full ? 1231 : 1237);
 		result = prime * result + ((panels == null) ? 0 : panels.hashCode());
-		result = prime * result + ((responsibilities == null) ? 0 : responsibilities.hashCode());
 		result = prime * result + ((top_five_anime == null) ? 0 : top_five_anime.hashCode());
 		result = prime * result + ((top_five_kpop_groups == null) ? 0 : top_five_kpop_groups.hashCode());
 		result = prime * result + ((top_two_anime_characters == null) ? 0 : top_two_anime_characters.hashCode());
@@ -314,11 +276,6 @@ public class User {
 				return false;
 		} else if (!panels.equals(other.panels))
 			return false;
-		if (responsibilities == null) {
-			if (other.responsibilities != null)
-				return false;
-		} else if (!responsibilities.equals(other.responsibilities))
-			return false;
 		if (top_five_anime == null) {
 			if (other.top_five_anime != null)
 				return false;
@@ -346,10 +303,10 @@ public class User {
 	public String toString() {
 		return "User [id=" + id + ", name=" + name + ", nick_name=" + nick_name + ", favorite_color=" + favorite_color
 				+ ", favorite_candy=" + favorite_candy + ", food_allergies=" + food_allergies + ", paid_in_full="
-				+ paid_in_full + ", can_donate=" + can_donate + ", responsibilities=" + responsibilities + ", panels="
-				+ panels + ", cosplays=" + cosplays + ", top_five_anime=" + top_five_anime
-				+ ", top_two_anime_characters=" + top_two_anime_characters + ", top_five_kpop_groups="
-				+ top_five_kpop_groups + ", top_two_ultimate_biases=" + top_two_ultimate_biases + ", additional_info="
-				+ additional_info + "]";
+				+ paid_in_full + ", can_donate=" + can_donate + ", panels=" + panels + ", cosplays=" + cosplays
+				+ ", top_five_anime=" + top_five_anime + ", top_two_anime_characters=" + top_two_anime_characters
+				+ ", top_five_kpop_groups=" + top_five_kpop_groups + ", top_two_ultimate_biases="
+				+ top_two_ultimate_biases + ", additional_info=" + additional_info + "]";
 	}
+
 }

@@ -99,6 +99,4 @@ public class Responsibility {
 		return "Responsibility [id=" + id + ", name=" + name + ", description=" + description + ", upper_limit="
 				+ upper_limit + "]";
 	}
-	
-	
 }

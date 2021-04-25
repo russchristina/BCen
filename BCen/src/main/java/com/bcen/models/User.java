@@ -8,6 +8,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -41,24 +42,25 @@ public class User {
 	private boolean paid_in_full;
 	@Column
 	private boolean can_donate;
-	/*
+	/**
 	 * This will be a many-to-many to responsibilities with a max of two.
 	 * 
 	 * The available jobs are:
 	 * 
-	 * Associate Consuite - rations and plans food menu for the party
-	 * Chief Consuite - prepares food based on the proposed menu
-	 * Driver - drives people everywhere lolz
+	 * Associate Consuite - rations and plans food menu for the party - upper limit 2
+	 * Chief Consuite - prepares food based on the proposed menu - upper limit - 2
+	 * Driver - drives people everywhere lolz - upper limit 2
 	 * Website - exclusive position that no one can sign up for (and no one can actually click it)
 	 * Founder - exclusive position that no one can sign up for
 	 * Medic - gives first aid to party goers - upper limit 2
 	 * Panelist - provides party fun
-	 * DJ - provides the bops
+	 * DJ - provides the bops - upper limit 2
 	 * Vendor - sells swag to party goers
 	 * Costume Repair - mends threads - upper limit 1
-	 * Program Coordinator - someone who manages scheduling and creates propaganda - upper limit 4
+	 * Program Coordinator - someone who manages scheduling and creates propaganda - upper limit 3
 	 */
 	@JoinColumn
+	@ManyToMany
 	private List<String> responsibilities;
 	@Column
 	private List<String> panels;

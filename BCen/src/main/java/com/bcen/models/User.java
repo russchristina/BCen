@@ -1,6 +1,7 @@
 package com.bcen.models;
 
 import java.util.List;
+import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -8,6 +9,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
@@ -37,7 +39,7 @@ public class User {
 	 * DB.
 	 */
 	@Column
-	private List<String> food_allergies;
+	private String food_allergies;
 	@Column
 	private boolean paid_in_full;
 	@Column
@@ -59,21 +61,22 @@ public class User {
 	 * Costume Repair - mends threads - upper limit 1
 	 * Program Coordinator - someone who manages scheduling and creates propaganda - upper limit 3
 	 */
-	@JoinColumn
 	@ManyToMany
-	private List<String> responsibilities;
+	@JoinTable(name = "user_responsibility", joinColumns = {@JoinColumn(name = "user_id")},
+	inverseJoinColumns = {@JoinColumn(name = "responsibility")})
+	private Set<Responsibility> responsibilities;
 	@Column
-	private List<String> panels;
+	private String panels;
 	@Column
-	private List<String> cosplays;
+	private String cosplays;
 	@Column
-	private List<String> top_five_anime;
+	private String top_five_anime;
 	@Column
-	private List<String> top_two_anime_characters;
+	private String top_two_anime_characters;
 	@Column
-	private List<String> top_five_kpop_groups;
+	private String top_five_kpop_groups;
 	@Column
-	private List<String> top_two_ultimate_biases;
+	private String top_two_ultimate_biases;
 	@Column
-	private List<String> additional_info;
+	private String additional_info;
 }

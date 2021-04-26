@@ -27,7 +27,7 @@ public class UserController {
 	}
 	
 	@PostMapping(path = "/registration")
-	public void save(@RequestBody User user) {
-		this.userService.save(user);
+	public User save(@RequestBody User user) {
+		return this.userService.save(user);
 	}
 }

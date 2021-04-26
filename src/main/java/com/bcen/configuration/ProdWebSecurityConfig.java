@@ -14,7 +14,7 @@ public class ProdWebSecurityConfig implements WebMvcConfigurer{
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
 		registry.addMapping("/**")
-		.allowedOrigins("http://bcen.herokuapp.com");
+		.allowedOrigins("https://bcen.herokuapp.com");
 	}
 
 }

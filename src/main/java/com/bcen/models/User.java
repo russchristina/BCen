@@ -20,8 +20,13 @@ public class User {
 	private int id;
 	@Column
 	private String name;
-	@Column
+	@Column(unique = true)
 	private String nick_name;
+	/*
+	 * Do not send passwords to the frontend.
+	 */
+	@Column
+	private String password;
 	@Column
 	private String favorite_color;
 	@Column
@@ -57,7 +62,7 @@ public class User {
 		// TODO Auto-generated constructor stub
 	}
 
-	public User(int id, String name, String nick_name, String favorite_color, String favorite_candy,
+	public User(int id, String name, String nick_name, String password, String favorite_color, String favorite_candy,
 			String food_allergies, boolean paid_in_full, boolean can_donate, String panels, String cosplays,
 			String top_five_anime, String top_two_anime_characters, String top_five_kpop_groups,
 			String top_two_ultimate_biases, String additional_info) {
@@ -65,6 +70,7 @@ public class User {
 		this.id = id;
 		this.name = name;
 		this.nick_name = nick_name;
+		this.password = password;
 		this.favorite_color = favorite_color;
 		this.favorite_candy = favorite_candy;
 		this.food_allergies = food_allergies;
@@ -199,6 +205,14 @@ public class User {
 		this.additional_info = additional_info;
 	}
 
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -214,6 +228,7 @@ public class User {
 		result = prime * result + ((nick_name == null) ? 0 : nick_name.hashCode());
 		result = prime * result + (paid_in_full ? 1231 : 1237);
 		result = prime * result + ((panels == null) ? 0 : panels.hashCode());
+		result = prime * result + ((password == null) ? 0 : password.hashCode());
 		result = prime * result + ((top_five_anime == null) ? 0 : top_five_anime.hashCode());
 		result = prime * result + ((top_five_kpop_groups == null) ? 0 : top_five_kpop_groups.hashCode());
 		result = prime * result + ((top_two_anime_characters == null) ? 0 : top_two_anime_characters.hashCode());
@@ -276,6 +291,11 @@ public class User {
 				return false;
 		} else if (!panels.equals(other.panels))
 			return false;
+		if (password == null) {
+			if (other.password != null)
+				return false;
+		} else if (!password.equals(other.password))
+			return false;
 		if (top_five_anime == null) {
 			if (other.top_five_anime != null)
 				return false;
@@ -301,12 +321,13 @@ public class User {
 
 	@Override
 	public String toString() {
-		return "User [id=" + id + ", name=" + name + ", nick_name=" + nick_name + ", favorite_color=" + favorite_color
-				+ ", favorite_candy=" + favorite_candy + ", food_allergies=" + food_allergies + ", paid_in_full="
-				+ paid_in_full + ", can_donate=" + can_donate + ", panels=" + panels + ", cosplays=" + cosplays
-				+ ", top_five_anime=" + top_five_anime + ", top_two_anime_characters=" + top_two_anime_characters
-				+ ", top_five_kpop_groups=" + top_five_kpop_groups + ", top_two_ultimate_biases="
-				+ top_two_ultimate_biases + ", additional_info=" + additional_info + "]";
+		return "User [id=" + id + ", name=" + name + ", nick_name=" + nick_name + ", password=" + password
+				+ ", favorite_color=" + favorite_color + ", favorite_candy=" + favorite_candy + ", food_allergies="
+				+ food_allergies + ", paid_in_full=" + paid_in_full + ", can_donate=" + can_donate + ", panels="
+				+ panels + ", cosplays=" + cosplays + ", top_five_anime=" + top_five_anime
+				+ ", top_two_anime_characters=" + top_two_anime_characters + ", top_five_kpop_groups="
+				+ top_five_kpop_groups + ", top_two_ultimate_biases=" + top_two_ultimate_biases + ", additional_info="
+				+ additional_info + "]";
 	}
 
 }

@@ -4,9 +4,13 @@ bin/
 .classpath
 .project
 .settings/
+target/
 
 # Log file
 *.log
+
+# Properties file
+application.properties
 
 # BlueJ files
 *.ctxt

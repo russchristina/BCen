@@ -18,7 +18,6 @@ import com.bcen.service.EventService;
 /*
  * This will need to be modified in production.
  */
-@CrossOrigin(origins = "http://localhost:4200")
 public class EventController {
 
 	@Autowired

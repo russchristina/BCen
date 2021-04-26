@@ -8,13 +8,12 @@ import org.springframework.web.servlet.config.annotation.WebMvcConfigurer;
 
 @Configuration
 @EnableWebMvc
-@Profile(value = "prod")
-public class WebSecurityConfig implements WebMvcConfigurer{
-	
+@Profile(value = "dev")
+public class DevWebSecurityConfig implements WebMvcConfigurer{
+
 	@Override
 	public void addCorsMappings(CorsRegistry registry) {
-		registry.addMapping("/*")
-		.allowedOrigins("http://bcen.herokuapp.com");
+		registry.addMapping("/**")
+		.allowedOrigins("http://localhost:4200");
 	}
-
 }

@@ -13,7 +13,6 @@ import com.bcen.service.ResponsibilityService;
 
 @RestController(value = "responsibilityController")
 @RequestMapping(path = "/responsibility")
-@CrossOrigin(origins = "http://localhost:4200")
 public class ResponsibilityController {
 
 	@Autowired

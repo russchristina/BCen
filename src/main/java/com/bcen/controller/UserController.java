@@ -15,7 +15,6 @@ import com.bcen.service.UserService;
 
 @RestController(value = "userController")
 @RequestMapping(path = "/user")
-@CrossOrigin(origins = "http://localhost:4200")
 public class UserController {
 
 	@Autowired

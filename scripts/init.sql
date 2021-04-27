@@ -1,0 +1,5 @@
+insert into responsibility values(default, 'Associate Consuite', 'Works together with Chief Consuite to plan our event rations and prepare a food menu for the party.', 2),
+(default, 'Chief Consuite', 'Takes charge of preparing the food based on the Associate''s menu!', 2), (default, 'Driver', 'Drives people everywhere lolz', 2),
+(default, 'Website', 'Brianna + Christina. Did we kill this or naw?', 0), (default, 'Panelist', 'Prepares some of dat good ol'' party fun!', 7), (default, 'DJ', 'Who got da jams? Provides the bops.', 2), (default, 'Vendor', 'Yes, money is to be made! Sells swag to party goers.', 7), (default, 'Costume Repair', 'Nurse Joy for cosplay, not Pokemon. Mends threads!', 1), (default, 'Program Coordinator', 'Someone who creates and manages scheduling.', 3), (default, 'Medic', 'Actual Nurse Joy... maybe of a Pokemon, but mostly people. Gives first aid to party goers.', 2);
+
+insert into event values();

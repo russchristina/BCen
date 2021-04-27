@@ -3,7 +3,6 @@ package com.bcen.controller;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -28,5 +27,10 @@ public class UserController {
 	@PostMapping(path = "/registration")
 	public User save(@RequestBody User user) {
 		return this.userService.save(user);
+	}
+	
+	@PostMapping(path = "/login")
+	public User login(@RequestBody User user) {
+		return this.userService.findByNick_nameAndPassword(user);
 	}
 }

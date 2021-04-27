@@ -28,7 +28,7 @@ public class Responsibility {
 	@Column
 	private String description;
 	@Column
-	private int upper_limit;
+	private int upperlimit;
 	/**
 	 * This will be a many-to-many to responsibilities with a max of two.
 	 * 
@@ -61,7 +61,7 @@ public class Responsibility {
 		this.id = id;
 		this.name = name;
 		this.description = description;
-		this.upper_limit = upper_limit;
+		this.upperlimit = upper_limit;
 		this.users = users;
 	}
 
@@ -89,12 +89,12 @@ public class Responsibility {
 		this.description = description;
 	}
 
-	public int getUpper_limit() {
-		return upper_limit;
+	public int getUpperlimit() {
+		return upperlimit;
 	}
 
-	public void setUpper_limit(int upper_limit) {
-		this.upper_limit = upper_limit;
+	public void setUpperlimit(int upper_limit) {
+		this.upperlimit = upper_limit;
 	}
 
 	public Set<User> getUsers() {
@@ -112,7 +112,7 @@ public class Responsibility {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + ((name == null) ? 0 : name.hashCode());
-		result = prime * result + upper_limit;
+		result = prime * result + upperlimit;
 		result = prime * result + ((users == null) ? 0 : users.hashCode());
 		return result;
 	}
@@ -138,7 +138,7 @@ public class Responsibility {
 				return false;
 		} else if (!name.equals(other.name))
 			return false;
-		if (upper_limit != other.upper_limit)
+		if (upperlimit != other.upperlimit)
 			return false;
 		if (users == null) {
 			if (other.users != null)
@@ -151,7 +151,7 @@ public class Responsibility {
 	@Override
 	public String toString() {
 		return "Responsibility [id=" + id + ", name=" + name + ", description=" + description + ", upper_limit="
-				+ upper_limit + ", users=" + users + "]";
+				+ upperlimit + ", users=" + users + "]";
 	}
 
 }

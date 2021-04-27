@@ -1,15 +1,13 @@
 package com.bcen.models;
 
-import java.util.Set;
-
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
-import javax.persistence.JoinTable;
-import javax.persistence.ManyToMany;
+import javax.persistence.ManyToOne;
 import javax.persistence.SequenceGenerator;
 import javax.persistence.Table;
 
@@ -23,35 +21,35 @@ public class Event {
 	@GeneratedValue(generator = "event_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "event_id_seq")
 	private int id;
-	@ManyToMany
-	@JoinTable(name = "event_user", joinColumns = { @JoinColumn(name = "event_id") }, inverseJoinColumns = {
-			@JoinColumn(name = "user_id") })
-	private Set<User> creator;
+	//What was the reason for making this join table? Is it that panels can be co-hosted? Or are users signing up for events?
+	@ManyToOne(fetch = FetchType.EAGER)
+	@JoinColumn(name = "user_id")
+	private User creator;
 	@Column
 	private String description;
 	@Column
 	private String category;
 	@Column
-	private int minimum_participants;
+	private int minimumparticipants;
 
 	public Event() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event(int id, Set<User> creator, String description, String category, int minimum_participants) {
+	public Event(int id, User creator, String description, String category, int minimum_participants) {
 		super();
 		this.id = id;
 		this.creator = creator;
 		this.description = description;
 		this.category = category;
-		this.minimum_participants = minimum_participants;
+		this.minimumparticipants = minimum_participants;
 	}
 
 	@Override
 	public String toString() {
 		return "Event [id=" + id + ", creator=" + creator + ", description=" + description + ", category=" + category
-				+ ", minimum_participants=" + minimum_participants + "]";
+				+ ", minimum_participants=" + minimumparticipants + "]";
 	}
 
 	@Override
@@ -62,7 +60,7 @@ public class Event {
 		result = prime * result + ((creator == null) ? 0 : creator.hashCode());
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
-		result = prime * result + minimum_participants;
+		result = prime * result + minimumparticipants;
 		return result;
 	}
 
@@ -92,7 +90,7 @@ public class Event {
 			return false;
 		if (id != other.id)
 			return false;
-		if (minimum_participants != other.minimum_participants)
+		if (minimumparticipants != other.minimumparticipants)
 			return false;
 		return true;
 	}
@@ -105,11 +103,11 @@ public class Event {
 		this.id = id;
 	}
 
-	public Set<User> getCreator() {
+	public User getCreator() {
 		return creator;
 	}
 
-	public void setCreator(Set<User> creator) {
+	public void setCreator(User creator) {
 		this.creator = creator;
 	}
 
@@ -129,12 +127,12 @@ public class Event {
 		this.category = category;
 	}
 
-	public int getMinimum_participants() {
-		return minimum_participants;
+	public int getMinimumparticipants() {
+		return minimumparticipants;
 	}
 
-	public void setMinimum_participants(int minimum_participants) {
-		this.minimum_participants = minimum_participants;
+	public void setMinimumparticipants(int minimum_participants) {
+		this.minimumparticipants = minimum_participants;
 	}
 
 }

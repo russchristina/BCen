@@ -12,4 +12,5 @@ public interface UserRepository extends JpaRepository<User, Integer>{
 	
 	List<User> findAll();
 	<S extends User> S save(S entity);
+	User findByNicknameAndPassword(String nickname, String password);
 }

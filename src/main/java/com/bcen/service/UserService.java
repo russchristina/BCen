@@ -21,4 +21,12 @@ public class UserService {
 	public User save(User user) {
 		return this.userRepository.save(user);
 	}
+	
+	public User findByNick_nameAndPassword(User user) {		
+		User returnedUser = this.userRepository.
+				findByNicknameAndPassword(user.getNick_name(), user.getPassword());
+			
+		return returnedUser;
+	}
+	
 }

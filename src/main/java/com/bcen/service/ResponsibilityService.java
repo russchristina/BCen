@@ -16,17 +16,22 @@ public class ResponsibilityService {
 	@Autowired
 	private ResponsibilityRepository responsibilityRepository;
 	
-	public List<Responsibility> findAll(){
-		List<Responsibility> retrievedResponsibilities = this.responsibilityRepository.findAll();
-		
-		for(Responsibility r : retrievedResponsibilities) {
+	public void pseudoSanitizePasswords(List<Responsibility> responsibilities) {
+		for(Responsibility r : responsibilities) {
 			r.getUsers().forEach(user -> user.setPassword(null));
 		}
-		
+	}
+	
+	public List<Responsibility> findAll(){
+		List<Responsibility> retrievedResponsibilities = this.responsibilityRepository.findAll();
+		pseudoSanitizePasswords(retrievedResponsibilities);
 		return retrievedResponsibilities;
 	}
 	
-	public Responsibility update(Responsibility responsibility) {
-		return this.responsibilityRepository.save(responsibility);
+	public List<Responsibility> update(List<Responsibility> responsibilities) {
+
+		List<Responsibility> retrievedResponsibilities = this.responsibilityRepository.saveAll(responsibilities);
+		pseudoSanitizePasswords(retrievedResponsibilities);
+		return retrievedResponsibilities;
 	}
 }

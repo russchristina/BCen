@@ -24,8 +24,8 @@ public class ResponsibilityController {
 		return this.responsibilityService.findAll();
 	}
 	
-	@PostMapping(path = "/modified-responsibility")
-	public Responsibility update(@RequestBody Responsibility responsibility) {
-		return this.responsibilityService.update(responsibility);
+	@PostMapping(path = "/modified-responsibilities")
+	public List<Responsibility> update(@RequestBody List<Responsibility> responsibilities) {
+		return this.responsibilityService.update(responsibilities);
 	}
 }

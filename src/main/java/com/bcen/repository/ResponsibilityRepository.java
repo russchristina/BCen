@@ -12,4 +12,5 @@ public interface ResponsibilityRepository extends JpaRepository<Responsibility, 
 
 	List<Responsibility> findAll();
 	<S extends Responsibility> S save(S entity);
+	<S extends Responsibility> List<S> saveAll(Iterable<S> entities);
 }

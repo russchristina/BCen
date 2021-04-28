@@ -25,7 +25,9 @@ public class UserService {
 	public User save(User user) {
 		String encodedPassword = this.passwordEncoder.encode(user.getPassword());
 		user.setPassword(encodedPassword);
-		return this.userRepository.save(user);
+		User retrievedUser = this.userRepository.save(user);
+		retrievedUser.setPassword(null);
+		return retrievedUser;
 	}
 	
 	public User findByNick_nameAndPassword(User user) {		

@@ -8,6 +8,8 @@ import org.springframework.stereotype.Service;
 import com.bcen.models.Responsibility;
 import com.bcen.repository.ResponsibilityRepository;
 
+import net.bytebuddy.asm.Advice.Return;
+
 @Service(value = "responsibilityService")
 public class ResponsibilityService {
 
@@ -15,6 +17,16 @@ public class ResponsibilityService {
 	private ResponsibilityRepository responsibilityRepository;
 	
 	public List<Responsibility> findAll(){
-		return this.responsibilityRepository.findAll();
+		List<Responsibility> retrievedResponsibilities = this.responsibilityRepository.findAll();
+		
+		for(Responsibility r : retrievedResponsibilities) {
+			r.getUsers().forEach(user -> user.setPassword(null));
+		}
+		
+		return retrievedResponsibilities;
+	}
+	
+	public Responsibility update(Responsibility responsibility) {
+		return this.responsibilityRepository.save(responsibility);
 	}
 }

@@ -11,4 +11,5 @@ import com.bcen.models.Responsibility;
 public interface ResponsibilityRepository extends JpaRepository<Responsibility, Integer>{
 
 	List<Responsibility> findAll();
+	<S extends Responsibility> S save(S entity);
 }

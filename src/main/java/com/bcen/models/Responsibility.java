@@ -4,6 +4,7 @@ import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
@@ -46,7 +47,7 @@ public class Responsibility {
 	 * Costume Repair - mends threads - upper limit 1
 	 * Program Coordinator - someone who manages scheduling and creates propaganda - upper limit 3
 	 */
-	@ManyToMany
+	@ManyToMany(fetch = FetchType.EAGER)
 	@JoinTable(name = "user_responsibility", joinColumns = {
 			@JoinColumn(name = "responsibility_id") }, inverseJoinColumns = { @JoinColumn(name = "user_id") })
 	private Set<User> users;

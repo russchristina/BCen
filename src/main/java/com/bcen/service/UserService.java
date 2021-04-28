@@ -3,6 +3,7 @@ package com.bcen.service;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
 import com.bcen.models.User;
@@ -12,6 +13,9 @@ import com.bcen.repository.UserRepository;
 public class UserService {
 	
 	@Autowired
+	private PasswordEncoder passwordEncoder;
+	
+	@Autowired
 	private UserRepository userRepository;
 	
 	public List<User> findAll(){
@@ -19,14 +23,21 @@ public class UserService {
 	}
 	
 	public User save(User user) {
+		String encodedPassword = this.passwordEncoder.encode(user.getPassword());
+		user.setPassword(encodedPassword);
 		return this.userRepository.save(user);
 	}
 	
 	public User findByNick_nameAndPassword(User user) {		
-		User returnedUser = this.userRepository.
-				findByNicknameAndPassword(user.getNick_name(), user.getPassword());
-			
-		return returnedUser;
+		User returnedUser = this.userRepository.findByNickname(user.getNick_name());
+		
+		if(returnedUser != null) {
+			if(this.passwordEncoder.matches(user.getPassword(), returnedUser.getPassword())) {
+				returnedUser.setPassword(null);
+				return returnedUser;
+			}
+		}
+		return null;
 	}
 	
 }

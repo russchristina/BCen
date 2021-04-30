@@ -21,7 +21,8 @@ public class Event {
 	@GeneratedValue(generator = "event_id_seq", strategy = GenerationType.AUTO)
 	@SequenceGenerator(allocationSize = 1, name = "event_id_seq")
 	private int id;
-	//What was the reason for making this join table? Is it that panels can be co-hosted? Or are users signing up for events?
+	@Column
+	private String title;
 	@ManyToOne(fetch = FetchType.EAGER)
 	@JoinColumn(name = "user_id")
 	private User creator;
@@ -37,19 +38,14 @@ public class Event {
 		// TODO Auto-generated constructor stub
 	}
 
-	public Event(int id, User creator, String description, String category, int minimum_participants) {
+	public Event(int id, String title, User creator, String description, String category, int minimumparticipants) {
 		super();
 		this.id = id;
+		this.title = title;
 		this.creator = creator;
 		this.description = description;
 		this.category = category;
-		this.minimumparticipants = minimum_participants;
-	}
-
-	@Override
-	public String toString() {
-		return "Event [id=" + id + ", creator=" + creator + ", description=" + description + ", category=" + category
-				+ ", minimum_participants=" + minimumparticipants + "]";
+		this.minimumparticipants = minimumparticipants;
 	}
 
 	@Override
@@ -61,6 +57,7 @@ public class Event {
 		result = prime * result + ((description == null) ? 0 : description.hashCode());
 		result = prime * result + id;
 		result = prime * result + minimumparticipants;
+		result = prime * result + ((title == null) ? 0 : title.hashCode());
 		return result;
 	}
 
@@ -91,6 +88,11 @@ public class Event {
 		if (id != other.id)
 			return false;
 		if (minimumparticipants != other.minimumparticipants)
+			return false;
+		if (title == null) {
+			if (other.title != null)
+				return false;
+		} else if (!title.equals(other.title))
 			return false;
 		return true;
 	}
@@ -133,6 +135,20 @@ public class Event {
 
 	public void setMinimumparticipants(int minimum_participants) {
 		this.minimumparticipants = minimum_participants;
+	}
+
+	public String getTitle() {
+		return title;
+	}
+
+	public void setTitle(String title) {
+		this.title = title;
+	}
+
+	@Override
+	public String toString() {
+		return "Event [id=" + id + ", title=" + title + ", creator=" + creator + ", description=" + description
+				+ ", category=" + category + ", minimumparticipants=" + minimumparticipants + "]";
 	}
 
 }

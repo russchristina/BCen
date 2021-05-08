@@ -2,6 +2,8 @@ package com.bcen.controller;
 
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -25,7 +27,8 @@ public class ResponsibilityController {
 	}
 	
 	@PostMapping(path = "/modified-responsibilities")
-	public List<Responsibility> update(@RequestBody List<Responsibility> responsibilities) {
-		return this.responsibilityService.update(responsibilities);
+	public List<Responsibility> update(@RequestBody List<Responsibility> responsibilities, HttpSession httpSession) {
+		System.out.println(httpSession.getAttribute("user"));
+		return this.responsibilityService.update(responsibilities, httpSession);
 	}
 }

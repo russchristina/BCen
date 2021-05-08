@@ -17,7 +17,6 @@ import com.bcen.service.ResponsibilityService;
 
 @RestController(value = "responsibilityController")
 @RequestMapping(path = "/responsibility")
-@CrossOrigin(origins = {"https://bcen.herokuapp.com"})
 public class ResponsibilityController {
 
 	@Autowired

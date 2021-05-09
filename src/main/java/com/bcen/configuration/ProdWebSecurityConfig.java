@@ -24,6 +24,7 @@ public class ProdWebSecurityConfig extends WebSecurityConfigurerAdapter{
 	protected void configure(HttpSecurity http) throws Exception {
 		http.csrf().disable();
 		http.cors();
+		http.authorizeRequests().anyRequest().authenticated().and().httpBasic();
 	}
 	
 	@Bean

@@ -31,7 +31,7 @@ public class ProdWebSecurityConfig extends WebSecurityConfigurerAdapter{
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("https://bcen.herokuapp.com", "http://bcen.herokuapp.com"));
 		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "HEAD"));
-		configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
+//		configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
 		source.registerCorsConfiguration("/**", configuration);

@@ -22,15 +22,15 @@ public class ProdWebSecurityConfig extends WebSecurityConfigurerAdapter{
 	
 	@Override
 	protected void configure(HttpSecurity http) throws Exception {
-		http.csrf().disable();
-		http.cors();
+//		http.csrf().disable();
+//		http.cors();
 	}
 	
 	@Bean
 	CorsConfigurationSource corsConfigurationSource() {
 		CorsConfiguration configuration = new CorsConfiguration();
 		configuration.setAllowedOrigins(Arrays.asList("https://bcen.herokuapp.com", "http://bcen.herokuapp.com"));
-		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "OPTIONS", "HEAD"));
+		configuration.setAllowedMethods(Arrays.asList("GET", "POST", "HEAD"));
 		configuration.setExposedHeaders(Arrays.asList("Access-Control-Allow-Origin"));
 		configuration.setAllowedHeaders(Arrays.asList("*"));
 		UrlBasedCorsConfigurationSource source = new UrlBasedCorsConfigurationSource();
